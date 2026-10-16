@@ -1,0 +1,405 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para o amor da minha vida ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: Georgia, "Times New Roman", serif;
+            background:
+                radial-gradient(circle at top, #35104d 0%, #16051f 45%, #08030c 100%);
+            color: white;
+        }
+
+        /* Estrelas */
+        .stars {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: brilho 3s infinite ease-in-out;
+        }
+
+        @keyframes brilho {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.8);
+            }
+        }
+
+        /* Corações */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            color: #ff6b9d;
+            font-size: 18px;
+            pointer-events: none;
+            animation: subir 7s linear infinite;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes subir {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(25deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: min(90%, 800px);
+            margin: auto;
+            padding: 70px 0;
+        }
+
+        .card {
+            padding: 45px 35px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(255, 70, 140, 0.12);
+            text-align: center;
+            animation: aparecer 1.5s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart-title {
+            font-size: 55px;
+            animation: pulsar 1.8s infinite ease-in-out;
+            margin-bottom: 15px;
+        }
+
+        @keyframes pulsar {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        h1 {
+            font-size: clamp(32px, 7vw, 58px);
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #ffb3cf, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #e9bfd0;
+            font-size: 17px;
+            margin-bottom: 40px;
+        }
+
+        .line {
+            width: 80px;
+            height: 2px;
+            background: #ff6b9d;
+            margin: 25px auto 35px;
+            box-shadow: 0 0 15px #ff6b9d;
+        }
+
+        .poem {
+            text-align: left;
+            line-height: 2;
+            font-size: 18px;
+            color: #f8eaf0;
+        }
+
+        .poem p {
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: #ff9fc0;
+            font-weight: bold;
+        }
+
+        .final {
+            margin-top: 45px;
+            font-size: 22px;
+            line-height: 1.8;
+            color: #fff;
+        }
+
+        .signature {
+            margin-top: 35px;
+            font-size: 20px;
+            color: #ff9fc0;
+            font-style: italic;
+        }
+
+        .date {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #b99eac;
+        }
+
+        /* Botão */
+        button {
+            margin-top: 35px;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff4f91, #c52c69);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 65, 130, 0.3);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 35px rgba(255, 65, 130, 0.5);
+        }
+
+        #mensagem {
+            display: none;
+            margin-top: 25px;
+            color: #ffd2e1;
+            font-size: 17px;
+            line-height: 1.7;
+            animation: aparecer 1s ease;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 0;
+            }
+
+            .card {
+                padding: 35px 22px;
+            }
+
+            .poem {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="card">
+
+            <div class="heart-title">❤️</div>
+
+            <h1>Para você, meu amor</h1>
+
+            <div class="subtitle">
+                Algumas palavras que talvez nunca sejam suficientes...
+            </div>
+
+            <div class="line"></div>
+
+            <div class="poem">
+
+                <p>
+                    Se eu pudesse transformar em palavras
+                    tudo aquilo que sinto por você,
+                    talvez nem todas as páginas do mundo
+                    fossem suficientes para escrever.
+                </p>
+
+                <p>
+                    Porque você chegou na minha vida
+                    e, de alguma forma,
+                    fez os dias comuns terem um brilho diferente,
+                    como se até os pequenos momentos
+                    tivessem aprendido a ser especiais.
+                </p>
+
+                <p>
+                    Gosto do seu jeito,
+                    do seu sorriso,
+                    da maneira como você faz meu coração
+                    esquecer por alguns segundos
+                    todos os problemas do mundo.
+                </p>
+
+                <p>
+                    E quando penso em você,
+                    percebo que existem pessoas
+                    que simplesmente não entram na nossa vida por acaso.
+                    Algumas chegam para deixar lembranças.
+                    <span class="highlight">
+                        Você chegou para deixar amor.
+                    </span>
+                </p>
+
+                <p>
+                    Eu não prometo que todos os dias serão perfeitos,
+                    porque a vida não é assim.
+                    Mas prometo que, enquanto estiver ao meu alcance,
+                    vou valorizar cada momento,
+                    cada conversa,
+                    cada sorriso
+                    e cada lembrança que construirmos juntos.
+                </p>
+
+                <p>
+                    Se algum dia você esquecer o quanto é importante,
+                    volte aqui e leia estas palavras.
+                    Porque em algum lugar deste mundo
+                    existe alguém que olha para você
+                    e pensa:
+                    <span class="highlight">
+                        "Que sorte a minha ter encontrado você."
+                    </span>
+                </p>
+
+            </div>
+
+            <div class="line"></div>
+
+            <div class="final">
+                Você é uma daquelas pessoas
+                que tornam a vida mais bonita
+                simplesmente por existir. ❤️
+            </div>
+
+            <div class="signature">
+                Com todo meu carinho,<br>
+                para a pessoa que mora no meu coração. ❤️
+            </div>
+
+            <button onclick="mostrarMensagem()">
+                Clique aqui ❤️
+            </button>
+
+            <div id="mensagem">
+                Eu poderia escrever mil poemas,
+                mas ainda assim faltariam palavras
+                para explicar o quanto você significa para mim. 💗
+                <br><br>
+                Obrigado por existir na minha vida.
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        // Criar estrelas
+        const stars = document.getElementById("stars");
+
+        for (let i = 0; i < 120; i++) {
+
+            const star = document.createElement("div");
+
+            star.classList.add("star");
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+
+            star.style.animationDelay =
+                Math.random() * 3 + "s";
+
+            stars.appendChild(star);
+        }
+
+
+        // Criar corações flutuando
+        function criarCoracao() {
+
+            const heart = document.createElement("div");
+
+            heart.classList.add("heart");
+
+            heart.innerHTML = "❤️";
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (12 + Math.random() * 20) + "px";
+
+            heart.style.animationDuration =
+                (5 + Math.random() * 5) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(criarCoracao, 700);
+
+
+        // Mensagem especial
+        function mostrarMensagem() {
+
+            const mensagem =
+                document.getElementById("mensagem");
+
+            if (mensagem.style.display === "block") {
+                mensagem.style.display = "none";
+            } else {
+                mensagem.style.display = "block";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+```
